@@ -1,0 +1,8 @@
+=============== Nov 17, 2021 (+08) ===============
+17:28:48.333830 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+17:28:48.472243 db@open opening
+17:28:48.473088 version@stat F·[] S·0B[] Sc·[]
+17:28:48.602138 db@janitor F·2 G·0
+17:28:48.602176 db@open done T·129.892365ms
+17:28:48.604913 db@close closing
+17:28:48.604978 db@close done T·64.267µs
