@@ -3,10 +3,7 @@ pragma solidity >=0.6.0 <0.8.0;
 
 // #if Mainnet
 import "./Params.sol";
-// #else
-import "./mock/MockParams.sol";
-// #endif
-import "../library/SafeMath.sol";
+import "./library/SafeMath.sol";
 import "./library/ReentrancyGuard.sol";
 import "./library/SafeSend.sol";
 import "./interfaces/IVotePool.sol";

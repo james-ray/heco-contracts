@@ -3,15 +3,11 @@ pragma solidity >=0.6.0 <0.8.0;
 
 // #if Mainnet
 import "./Params.sol";
-// #else
-import "./mock/MockParams.sol";
-// #endif
-import "../library/SafeMath.sol";
+
+import "./library/SafeMath.sol";
 // #if Mainnet
 import "./VotePool.sol";
-// #else
-import "./mock/MockVotePool.sol";
-// #endif
+
 import "./library/SortedList.sol";
 import "./interfaces/IVotePool.sol";
 import "./interfaces/IValidators.sol";
@@ -74,7 +70,7 @@ contract Validators is Params, SafeSend, IValidators {
         _;
     }
 
-    function initialize(address[] memory _validators, address[] memory _managers, address _admin)
+    function initialize(address[] calldata _validators, address[] calldata _managers, address _admin)
     external
     onlyNotInitialized {
         require(_validators.length > 0 && _validators.length == _managers.length, "Invalid params");
@@ -94,10 +90,6 @@ contract Validators is Params, SafeSend, IValidators {
             VotePool _pool = new VotePool(_validator, _managers[i], PERCENT_BASE, ValidatorType.Poa, State.Ready);
             allValidators.push(_validator);
             votePools[_validator] = _pool;
-
-            // #if !Mainnet
-            _pool.setAddress(address(this), address(0));
-            // #endif
 
             _pool.initialize();
         }
@@ -215,7 +207,7 @@ contract Validators is Params, SafeSend, IValidators {
     }
 
 
-    function updateActiveValidatorSet(address[] memory newSet, uint256 epoch)
+    function updateActiveValidatorSet(address[] calldata newSet, uint256 epoch)
     external
         // #if Mainnet
     onlyMiner
